@@ -3,14 +3,19 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import GetMoviesList from "./GetMoviesList";
 
-const ReviewList = () => {
+const ReviewList = (props) => {
     
-    const movieList = GetMoviesList()
+    const movieList = async() => {
+        await GetMoviesList().then(res => {
+            return res
+        })
+    }
+    
 
-    console.log(movieList)
     
     
 
+    console.log(movieList())
    
     
 
