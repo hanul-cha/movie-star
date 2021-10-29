@@ -1,3 +1,30 @@
+li{
+  list-style: none;
+}
+
 .App {
   text-align: center;
 }
+
+.stack{
+  background-color: rgb(255, 238, 241);
+  display: inline-flex;
+  align-items: center;
+  padding:20px;
+}
+
+.starAvg{
+  margin: 0;
+  margin-right: 20px;
+}
+
+
+.rateBtn{
+  margin-left: 20px;
+  width: 60px;
+  height: 34px;
+  border: none;
+  cursor: pointer;
+  background-color: #fff;
+}
+
