@@ -9,13 +9,13 @@ const movieListReducer = (state=[], action) => {
         case GET_API:
             const movieList = async() => {
                 await GetMoviesList().then(res => {
-                    
+                    state.push(res)    
                 })
             }
             movieList();
 
             return {
-                
+                ...state
             }
         case ADD_DATE:
             return {
@@ -30,3 +30,5 @@ const movieListReducer = (state=[], action) => {
             break;
     }
 }
+
+export default movieListReducer

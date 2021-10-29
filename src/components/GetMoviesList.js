@@ -17,23 +17,12 @@ export default async function GetMoviesList() {
         baseURL: `http://kobis.or.kr/kobisopenapi/webservice/rest`
     });
 
-    const moviesList = async() => {
-        try {
-            return await instance.get('boxoffice/searchDailyBoxOfficeList.json', {
-                params: {
-                    key: MYKEY,
-                    targetDt: `${toDay()}`
-                }
-                
-            })
-            /* .then(res => {
-                return res
-            }) */
-        
-        } catch {
-
+    const moviesList = await instance.get('boxoffice/searchDailyBoxOfficeList.json', {
+        params: {
+            key: MYKEY,
+            targetDt: `${toDay()}`
         }
-    }
-    const list = await moviesList()
-    return list
+    })
+    
+    return moviesList
 }
