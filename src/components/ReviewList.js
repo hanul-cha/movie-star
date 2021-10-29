@@ -10,14 +10,19 @@ const ReviewList = (props) => {
    
     
     
-    
-    /* const movieList = async() => {
+    useEffect(() => {
+    const movieList = async() => {
         await GetMoviesList().then(res => {
-            return res
+            const boxOffice = res.data.boxOfficeResult.dailyBoxOfficeList
+            console.log(boxOffice)
+            setList(boxOffice);
         })
-    } */
+    }
+    movieList()
+    },[])
+    
 
-    console.log(props)
+    console.log(list)
     //이렇게 하면 되긴 하는데... 이방법으로 리덕스 초기값에 넣을수 있을까??
    
     
