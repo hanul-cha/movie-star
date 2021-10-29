@@ -3,20 +3,25 @@ import GetMoviesList from "../../components/GetMoviesList"
 
 
 
+const initialState = {
+    list: []
+}
 
-const movieListReducer = (state=[], action) => {
+const movieListReducer = (state=initialState, action) => {
     switch (action.type) {
         case GET_API:
             const movieList = async() => {
                 await GetMoviesList().then(res => {
-                    state.push(res)    
+                    const data = res.data.boxOfficeResult.dailyBoxOfficeList
+                    return data
                 })
             }
-            movieList();
-
             return {
-                ...state
+                ...state,
+                list: movieList()
             }
+
+            
         case ADD_DATE:
             return {
 
@@ -27,7 +32,7 @@ const movieListReducer = (state=[], action) => {
             }
     
         default:
-            break;
+            return state
     }
 }
 
