@@ -7,23 +7,18 @@ import { connect } from "react-redux";
 const ReviewList = (props) => {
     const [list, setList] =useState([])
 
-   
-    
-    
     useEffect(() => {
     const movieList = async() => {
         await GetMoviesList().then(res => {
             const boxOffice = res.data.boxOfficeResult.dailyBoxOfficeList
-            console.log(boxOffice)
             setList(boxOffice);
         })
     }
     movieList()
     },[])
     
-
-    console.log(list)
-    //이렇게 하면 되긴 하는데... 이방법으로 리덕스 초기값에 넣을수 있을까??
+    //이렇게 하면 되긴 하는데... 이방법으로 리덕스에 넣을수 있을까??
+    //비동기로 처리하면 무수한 프라미스를 반환할뿐... redux-thunk를 사용해야한다고함...
    
     
 
