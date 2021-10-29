@@ -1,4 +1,4 @@
-import { ADD_DATE, MINUS_DATE } from "./types"
+import { ADD_DATE, MINUS_DATE, GET_API } from "./types"
 
 export const addDateApi = () => {
     return {
@@ -9,5 +9,11 @@ export const addDateApi = () => {
 export const minusDateApi = () => {
     return {
         type: MINUS_DATE
+    }
+}
+
+export const getApi = () => {
+    return {
+        type: GET_API
     }
 }
