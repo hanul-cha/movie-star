@@ -12,6 +12,9 @@ export default async function GetMoviesList() {
         var day = ("0" + (date.getDate() - 1)).slice(-2);
         return year + month + day;
     }
+    const myDay = toDay()
+
+    console.log(myDay)
 
     const instance = axios.create({
         baseURL: `http://kobis.or.kr/kobisopenapi/webservice/rest`
@@ -20,7 +23,7 @@ export default async function GetMoviesList() {
     const moviesList = await instance.get('boxoffice/searchDailyBoxOfficeList.json', {
         params: {
             key: MYKEY,
-            targetDt: `${toDay()}`
+            targetDt: `${myDay}`
         }
     })
     
