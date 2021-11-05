@@ -1,12 +1,9 @@
 import './App.css';
 import { BrowserRouter, Route, Switch} from "react-router-dom";
 import ReviewList from './components/ReviewList';
-import { Provider } from "react-redux"
-import store from './redux/store';
 
 function App() {
   return (
-    <Provider store={store}>
     <BrowserRouter>
       <div className="App">
        {/* header */}
@@ -21,7 +18,6 @@ function App() {
        </Switch>
       </div>
     </BrowserRouter>
-    </Provider>
   );
 }
 

@@ -1,6 +1,5 @@
 import { createStore } from "redux";
-import movieListReducer from "./movieList/reducer";
 
-const store = createStore(movieListReducer)
+const store = createStore()
 
 export default store;
