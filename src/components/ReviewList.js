@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import GetMoviesList from "./GetMoviesList";
-import { connect } from "react-redux";
 
-const ReviewList = (props) => {
+const ReviewList = () => {
     const [list, setList] =useState([])
 
     useEffect(() => {
@@ -48,11 +47,4 @@ const ReviewList = (props) => {
     )
 }
 
-
-const mapStateToProps = (state) => {
-    return {
-        movieList: state
-    }
-}
-
-export default connect(mapStateToProps)(ReviewList)
+export default ReviewList
