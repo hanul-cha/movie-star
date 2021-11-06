@@ -12,12 +12,11 @@ const BoxOfficeReducer = (state = initialState, action) => {
                 success: false
             }
         case BOXOFFICE_SUCCESS: {
-            const { data } = action.payload
 
             return {
                 ...state,
                 success: true,
-                boxOfficeList: data
+                boxOfficeList: action.payload
             }
         }
         default:

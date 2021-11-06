@@ -1,4 +1,4 @@
-import axios from "axios";
+/* import axios from "axios";
 import "../env";
 
 export default async function GetMoviesList() {
@@ -26,4 +26,4 @@ export default async function GetMoviesList() {
     })
     
     return moviesList
-}
+} */
