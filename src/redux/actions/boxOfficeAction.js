@@ -1,5 +1,6 @@
 import axios from "axios";
-import "../env";
+import "../../env";
+import { BOXOFFICE_FAIL, BOXOFFICE_SUCCESS } from "./boxOfficeActionType";
 
 const MYKEY = process.env.REACT_APP_API_KEY;
 
@@ -19,12 +20,12 @@ export const fetchBoxOffice = (toDay) => async (dispatch) => {
         const data = res.data
 
         dispatch({
-            type: true,
+            type: BOXOFFICE_SUCCESS,
             payload: data
         })
     } catch(err) {
         dispatch({
-            type: false
+            type: BOXOFFICE_FAIL
         })
     }
 } 

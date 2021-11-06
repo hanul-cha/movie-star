@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchBoxOffice } from "../redux/actions/boxOfficeAction";
 import GetMoviesList from "./GetMoviesList";
 
 
 const ReviewList = () => {
     const [list, setList] =useState([])
 
-    useEffect(() => {
+    /* useEffect(() => {
     const movieList = async() => {
         await GetMoviesList().then(res => {
             const boxOffice = res.data.boxOfficeResult.dailyBoxOfficeList
@@ -15,12 +17,27 @@ const ReviewList = () => {
         })
     }
     movieList()
-    },[])
+    },[]) */
+
+    const boxOfficeReducer = useSelector((state) => state.BoxOfficeReducer)
+    const dispatch = useDispatch()
+
+    const toDay = () => {
+        var date = new Date();
+        var year = date.getFullYear();
+        var month = ("0" + (1 + date.getMonth())).slice(-2);
+        var day = ("0" + (date.getDate() - 1)).slice(-2);
+        return year + month + day;
+    }
+    const myDay = toDay()
+
     
-    //이렇게 하면 되긴 하는데... 이방법으로 리덕스에 넣을수 있을까??
-    //비동기로 처리하면 무수한 프라미스를 반환할뿐... redux-thunk를 사용해야한다고함...
-   
-    console.log(list)
+    const getApi = () => {
+        dispatch(fetchBoxOffice(myDay))
+    }
+
+    console.log(boxOfficeReducer);
+
 
 
     return (
@@ -42,7 +59,13 @@ const ReviewList = () => {
         </ul>
 
         <div>
-            
+            <button onClick={getApi}>test</button>
+
+            {boxOfficeReducer.success && 
+                <div>
+                    <p>ok</p>
+                </div>
+            }
         </div>
         </>
     )

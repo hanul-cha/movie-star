@@ -14,8 +14,6 @@ export default async function GetMoviesList() {
     }
     const myDay = toDay()
 
-    console.log(myDay)
-
     const instance = axios.create({
         baseURL: `http://kobis.or.kr/kobisopenapi/webservice/rest`
     });
