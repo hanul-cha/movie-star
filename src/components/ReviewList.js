@@ -18,12 +18,14 @@ const ReviewList = () => {
         var day = ("0" + (date.getDate() - 1)).slice(-2);
         return year + month + day;
     }
-    const myDay = toDay()
+    const myDay = toDay() /* 20211104 */
 
 
     useEffect(() => {
         dispatch(fetchBoxOffice(myDay))
     },[])
+
+    console.log(boxOfficeReducer)
 
 
     return (
@@ -37,14 +39,20 @@ const ReviewList = () => {
                 <ul>
                     {boxOfficeReducer.boxOfficeList.boxOfficeResult.dailyBoxOfficeList.map(movies => (
                         <li key={movies.rnum}>
-                            <h2>{movies.movieNm}</h2>
-                            
+                            <div className="movieName">
+                                {
+                                    movies.rankOldAndNew === "NEW"
+                                    ? <p className="newMovie">NEW</p>
+                                    :""
+                                }
+                                <h2>{movies.movieNm}</h2>
+                            </div>
                             <div className="stack">
                             <p className="starAvg">평균 별점 : </p>
                             <Stack spacing={2}>
                                 <Rating name="size-small" defaultValue={0} size="small" />
                             </Stack>
-                            <button className="rateBtn">반영</button>
+                            <button className="rateBtn">리뷰</button>
                             </div>
                         </li>
                     ))}
