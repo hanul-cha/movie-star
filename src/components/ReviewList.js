@@ -30,11 +30,7 @@ const ReviewList = () => {
 
     return (
         <>
-        
-
         <div>
-            {/* <button onClick={getApi}>test</button> */}
-
             {boxOfficeReducer.success && 
                 <ul>
                     {boxOfficeReducer.boxOfficeList.boxOfficeResult.dailyBoxOfficeList.map(movies => (
