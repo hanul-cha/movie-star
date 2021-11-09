@@ -34,6 +34,7 @@ const ReviewList = () => {
             {boxOfficeReducer.success && 
                 <ul>
                     {boxOfficeReducer.boxOfficeList.boxOfficeResult.dailyBoxOfficeList.map(movies => (
+                        
                         <li key={movies.rnum}>
                             <div className="movieName">
                                 {

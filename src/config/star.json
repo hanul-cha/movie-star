@@ -1,8 +1,9 @@
 [
     {
-        "id":"1",
-        "movieCD":"20218256",
-        "movieNm":"이터널스",
-        "star":"4"
+        "id": "1",
+        "movieCD": "20218256",
+        "movieNm": "이터널스",
+        "scoreAVG" :8,
+        "number": 2
     }
 ]
