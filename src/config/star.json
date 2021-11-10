@@ -5,5 +5,12 @@
         "movieNm": "이터널스",
         "scoreAVG" :8,
         "number": 2
+    },
+    {
+        "id": "2",
+        "movieCD": "20210087",
+        "movieNm": "듄",
+        "scoreAVG" :13,
+        "number": 3
     }
 ]

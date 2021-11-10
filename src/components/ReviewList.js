@@ -26,17 +26,17 @@ const ReviewList = () => {
         dispatch(fetchBoxOffice(myDay))
     },[])
 
-    console.log(boxOfficeReducer)
+    /* console.log(boxOfficeReducer) */ //dispatch해서 오게된 값
 
     const process = {
         get: async (boxOffice) => {
             const moviestar = new MovieStar(boxOffice)
             const getMovie = await moviestar.getMovie();
-            console.log(getMovie)
+            /* console.log(getMovie) */
         }
     }
 
-    process.get()
+    process.get(boxOfficeReducer)
     
 
     return (

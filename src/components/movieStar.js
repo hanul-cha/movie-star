@@ -1,4 +1,3 @@
-import axios from "axios";
 import "../env";
 
 const SERVER_PORT = process.env.REACT_APP_SERVER_PORT;
@@ -9,7 +8,7 @@ class MovieStar {
     }
     
     async getMovie() {
-        fetch(`http://localhost:${SERVER_PORT}/api/stars`, {
+        const starList = await fetch(`http://localhost:${SERVER_PORT}/api/stars`, {
             method: "get",
             headers: {
                 "Content-Type": "application/json",
@@ -17,10 +16,13 @@ class MovieStar {
         })
         .then((res) => res.json())
         .then(res => {
-            console.log(res)
             return res
         })
-
+        console.log(starList)
+        console.log(this.boxOffice)
+        /* 
+        starList, this.boxOffice이 두게를 이용해서 비교해서 별점 부과하면 될듯함
+        */
         
     }
 
