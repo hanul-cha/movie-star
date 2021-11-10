@@ -1,3 +1,39 @@
+import axios from "axios";
+import "../env";
+
+const SERVER_PORT = process.env.REACT_APP_SERVER_PORT;
+
+class MovieStar {
+    constructor(boxOffice) {
+        this.boxOffice = boxOffice
+    }
+    
+    async getMovie() {
+        fetch(`http://localhost:${SERVER_PORT}/api/stars`, {
+            method: "get",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then((res) => res.json())
+        .then(res => {
+            console.log(res)
+            return res
+        })
+
+        
+    }
+
+    putMovie() {
+
+    }
+}
+
+
+
+
+export default MovieStar
+
 /* 
 평균구하는 식
 4,4,4,4,5,3
@@ -17,4 +53,3 @@ false라면 0으로 할당
 "number": 2
 이 두가지 값만 변경
 */
-

@@ -3,6 +3,7 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBoxOffice } from "../redux/actions/boxOfficeAction";
+import MovieStar from "./movieStar";
 
 
 const ReviewList = () => {
@@ -27,6 +28,16 @@ const ReviewList = () => {
 
     console.log(boxOfficeReducer)
 
+    const process = {
+        get: async (boxOffice) => {
+            const moviestar = new MovieStar(boxOffice)
+            const getMovie = await moviestar.getMovie();
+            console.log(getMovie)
+        }
+    }
+
+    process.get()
+    
 
     return (
         <>
