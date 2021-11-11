@@ -32,18 +32,33 @@ class MovieStar {
         const starList = await this.getMovie()
         /* console.log(officeList.movieCd)
         console.log(starList) */
-        return starList.map(cd => {
+        let numbers = {}
+        /* starList.map((cd) => {
             if(officeList.movieCd === cd.movieCd){
-                return {
+                numbers = {
                     success: true,
                     number: cd.scoreAVG/cd.number, 
                 }
             } else {
-                return {
-                    success: false
+                numbers = {
+                    success: false,
                 }
             }
-        })
+        }) */
+        for(let i=0; i<starList.length; i++){
+            if(officeList.movieCd === starList[i].movieCd){
+                numbers = {
+                    success: true,
+                    number: starList[i].scoreAVG/starList[i].number, 
+                }
+            break
+            } else {
+                numbers = {
+                    success: false,
+                }
+            }
+        }
+        return numbers
     }
 }
 
