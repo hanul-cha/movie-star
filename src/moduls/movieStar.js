@@ -28,10 +28,22 @@ class MovieStar {
     }
 
     async getNum() {
-        const officeList = this.boxOffice.success ? this.boxOffice.boxOfficeList.boxOfficeResult.dailyBoxOfficeList : []
+        const officeList = this.boxOffice
         const starList = await this.getMovie()
-        console.log(officeList)
-        console.log(starList)
+        /* console.log(officeList.movieCd)
+        console.log(starList) */
+        return starList.map(cd => {
+            if(officeList.movieCd === cd.movieCd){
+                return {
+                    success: true,
+                    number: cd.scoreAVG/cd.number, 
+                }
+            } else {
+                return {
+                    success: false
+                }
+            }
+        })
     }
 }
 

@@ -3,7 +3,7 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchBoxOffice } from "../redux/actions/boxOfficeAction";
-import MovieStar from "./movieStar";
+import { processCtrl } from "../moduls/processCtrl";
 
 
 const ReviewList = () => {
@@ -28,24 +28,25 @@ const ReviewList = () => {
 
     /* console.log(boxOfficeReducer) */ //dispatch해서 오게된 값
 
-    const process = {
-        get: async (boxOffice) => {
-            const moviestar = new MovieStar(boxOffice)
-            /* const getMovie = await moviestar.getMovie(); */
-            const getNum = await moviestar.getNum();
-            /* console.log(getMovie) */
-        }
-    }
+    const officeList = boxOfficeReducer.success ? boxOfficeReducer.boxOfficeList.boxOfficeResult.dailyBoxOfficeList : []
 
-    process.get(boxOfficeReducer)
     
+    /* const test = processCtrl.get(officeList) */
+    const test =  officeList.map(movie => {
+        return processCtrl.get(movie)
+    })
+    console.log(test)
+    
+    
+
+
 
     return (
         <>
         <div>
             {boxOfficeReducer.success && 
                 <ul>
-                    {boxOfficeReducer.boxOfficeList.boxOfficeResult.dailyBoxOfficeList.map(movies => (
+                    {officeList.map(movies => (
                         
                         <li key={movies.rnum}>
                             <div className="movieName">
