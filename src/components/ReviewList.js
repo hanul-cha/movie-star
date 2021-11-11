@@ -1,13 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, useStore } from 'react-redux';
 import { fetchBoxOffice } from "../redux/actions/boxOfficeAction";
 import { processCtrl } from "../moduls/processCtrl";
 
 
 const ReviewList = () => {
-
+    const [starNum, setStarNum] = useState([])
     const boxOfficeReducer = useSelector((state) => state.BoxOfficeReducer)
     const dispatch = useDispatch()
 
@@ -30,12 +30,21 @@ const ReviewList = () => {
 
     const officeList = boxOfficeReducer.success ? boxOfficeReducer.boxOfficeList.boxOfficeResult.dailyBoxOfficeList : []
 
+    const test = (movie) => {
+        processCtrl.get(movie).then(res => {
+            /* console.log(res) */
+            /* setStarNum(num => [...num, res]) */
+            
+        })
+    }
     
-    /* const test = processCtrl.get(officeList) */
-    const test =  officeList.map(movie => {
-        return processCtrl.get(movie)
-    })
-    console.log(test)
+        
+    
+        
+    
+    
+
+    
     
     
 
@@ -46,26 +55,32 @@ const ReviewList = () => {
         <div>
             {boxOfficeReducer.success && 
                 <ul>
-                    {officeList.map(movies => (
-                        
-                        <li key={movies.rnum}>
-                            <div className="movieName">
-                                {
-                                    movies.rankOldAndNew === "NEW"
-                                    ? <p className="newMovie">NEW</p>
-                                    :""
-                                }
-                                <h2>{movies.movieNm}</h2>
-                            </div>
-                            <div className="stack">
-                            <p className="starAvg">평균 별점 : </p>
-                            <Stack spacing={2}>
-                                <Rating name="size-small" defaultValue={0} size="small" />
-                            </Stack>
-                            <button className="rateBtn">리뷰</button>
-                            </div>
-                        </li>
-                    ))}
+                    {officeList.map((movies, i) => {
+                        test(movies)
+                        console.log(starNum[i])
+                    
+                        return (    
+                            <li key={movies.rnum}>
+                                <div className="movieName">
+                                    {
+                                        movies.rankOldAndNew === "NEW"
+                                        ? <p className="newMovie">NEW</p>
+                                        :""
+                                    }
+                                    <h2>{movies.movieNm}</h2>
+                                </div>
+                                <div className="stack">
+                                <p className="starAvg">평균 별점 : </p>
+                                <Stack spacing={2}>
+                                    <Rating name="size-small" defaultValue={
+                                        1
+                                        } size="small" />
+                                </Stack>
+                                <button className="rateBtn">리뷰</button>
+                                </div>
+                            </li>
+                        )
+                    })}
                 </ul>
             }
         </div>
