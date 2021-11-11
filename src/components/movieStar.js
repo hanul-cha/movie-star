@@ -18,16 +18,20 @@ class MovieStar {
         .then(res => {
             return res
         })
-        console.log(starList)
-        console.log(this.boxOffice)
+        /* console.log(starList)
+        console.log(this.boxOffice) */
+        return starList
         /* 
         starList, this.boxOffice이 두게를 이용해서 비교해서 별점 부과하면 될듯함
         */
         
     }
 
-    putMovie() {
-
+    async getNum() {
+        const officeList = this.boxOffice.success ? this.boxOffice.boxOfficeList.boxOfficeResult.dailyBoxOfficeList : []
+        const starList = await this.getMovie()
+        console.log(officeList)
+        console.log(starList)
     }
 }
 

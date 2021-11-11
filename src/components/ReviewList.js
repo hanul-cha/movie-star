@@ -31,7 +31,8 @@ const ReviewList = () => {
     const process = {
         get: async (boxOffice) => {
             const moviestar = new MovieStar(boxOffice)
-            const getMovie = await moviestar.getMovie();
+            /* const getMovie = await moviestar.getMovie(); */
+            const getNum = await moviestar.getNum();
             /* console.log(getMovie) */
         }
     }
