@@ -30,13 +30,22 @@ const ReviewList = () => {
 
     const officeList = boxOfficeReducer.success ? boxOfficeReducer.boxOfficeList.boxOfficeResult.dailyBoxOfficeList : []
 
-    const test = (movie) => {
-        processCtrl.get(movie).then(res => {
-            /* console.log(res) */
-            /* setStarNum(num => [...num, res]) */
-            
-        })
+    
+    const test = async (movie) => {
+        let test2 = await processCtrl.get(movie)
+        setStarNum([...starNum, test2])
+        
     }
+    /* test(officeList[0]) */
+
+    useEffect(() => {
+       officeList.map(res => {
+           test(res)
+       })
+    },[])
+
+    console.log(starNum);
+    
     
         
     
@@ -56,8 +65,8 @@ const ReviewList = () => {
             {boxOfficeReducer.success && 
                 <ul>
                     {officeList.map((movies, i) => {
-                        test(movies)
-                        console.log(starNum[i])
+                        /* let test3 = test(movies)
+                        console.log(test3) */
                     
                         return (    
                             <li key={movies.rnum}>
