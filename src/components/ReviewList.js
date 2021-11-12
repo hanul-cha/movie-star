@@ -33,18 +33,20 @@ const ReviewList = () => {
     
     const test = async (movie) => {
         let test2 = await processCtrl.get(movie)
-        setStarNum([...starNum, test2])
+        console.log(test2) 
         
+        return test2
+          
     }
-    /* test(officeList[0]) */
 
-    useEffect(() => {
-       officeList.map(res => {
-           test(res)
-       })
-    },[])
+    /* 
+    무한루프가 되니까 mpa함수로 배열에 한번에 추가하고
+    setState함수엔 추가된 배열을 한번에 넘겨주면 무한루프가 안되겠지???
+    */
 
-    console.log(starNum);
+    
+
+    
     
     
         
@@ -65,8 +67,10 @@ const ReviewList = () => {
             {boxOfficeReducer.success && 
                 <ul>
                     {officeList.map((movies, i) => {
-                        /* let test3 = test(movies)
-                        console.log(test3) */
+                        
+                        let test3 = test(movies)
+                        
+                        console.log(test3)
                     
                         return (    
                             <li key={movies.rnum}>
