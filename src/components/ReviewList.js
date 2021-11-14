@@ -50,13 +50,12 @@ const ReviewList = () => {
     
     useEffect(() => {
         dispatch(getStars(officeList))
-        
     },[boxOfficeReducer])
+
     if(getListReducer.success){
         getListReducer.starList.then(res => {
             setStarNum(res)
         })
-        
     }
     
     console.log(starNum)
@@ -70,6 +69,7 @@ const ReviewList = () => {
                     {officeList.map((movies, i) => {
                         /* getList(movies) */
                     
+                        
                         return (   
                             <li key={movies.rnum}>
                                 <p>{starNum[i]}</p>
@@ -85,7 +85,7 @@ const ReviewList = () => {
                                 <p className="starAvg">평균 별점 : </p>
                                 <Stack spacing={2}>
                                     <Rating name="size-small" defaultValue={
-                                        starNum[i]
+                                        1
                                         } size="small" />
                                 </Stack>
                                 <button className="rateBtn">리뷰</button>

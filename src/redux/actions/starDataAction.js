@@ -14,17 +14,19 @@ export const getStars = (movies) => async (dispatch) => {
             const starList = await data
             const movie = movies
             const numbers = []; 
-            movie.map(data => {
+            movie.forEach((data, z) => {
                 for(let i=0; i<starList.length; i++){
                     if(data.movieCd === starList[i].movieCd){
-                        numbers.push(starList[i].scoreAVG/starList[i].number)
+                        numbers[z] = (starList[i].scoreAVG/starList[i].number)
                     break
                     } else {
-                        numbers.push(0)
+                        numbers[z] = 0
                     }
                 }
             })
+            
             return numbers
+            
         }
         
 
