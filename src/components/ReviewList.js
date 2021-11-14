@@ -32,32 +32,10 @@ const ReviewList = () => {
 
     
     const test = async (movie) => {
-        let test2 = await processCtrl.get(movie)
-        console.log(test2) 
-        
-        return test2
-          
+        const test2 = await processCtrl.get(movie)
+        /* console.log(test2) */
+        return test2 
     }
-
-    /* 
-    무한루프가 되니까 mpa함수로 배열에 한번에 추가하고
-    setState함수엔 추가된 배열을 한번에 넘겨주면 무한루프가 안되겠지???
-    */
-
-    
-
-    
-    
-    
-        
-    
-        
-    
-    
-
-    
-    
-    
 
 
 
@@ -68,11 +46,16 @@ const ReviewList = () => {
                 <ul>
                     {officeList.map((movies, i) => {
                         
-                        let test3 = test(movies)
-                        
+                        const test3 = test(movies)
                         console.log(test3)
+                        
+                        
+                        
+                        
+                        
+                         
                     
-                        return (    
+                        return (   
                             <li key={movies.rnum}>
                                 <div className="movieName">
                                     {

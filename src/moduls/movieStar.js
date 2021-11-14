@@ -35,15 +35,10 @@ class MovieStar {
         let numbers;
         for(let i=0; i<starList.length; i++){
             if(officeList.movieCd === starList[i].movieCd){
-                numbers = {
-                    success: true,
-                    number: starList[i].scoreAVG/starList[i].number, 
-                }
+                numbers = starList[i].scoreAVG/starList[i].number
             break
             } else {
-                numbers = {
-                    success: false,
-                }
+                numbers = 0
             }
         }
         return numbers
