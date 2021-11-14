@@ -8,7 +8,7 @@ import { processCtrl } from "../moduls/processCtrl";
 
 
 const ReviewList = () => {
-    const [starNum, setStarNum] = useState([])
+    /* const [starNum, setStarNum] = useState([]) */
     const boxOfficeReducer = useSelector((state) => state.BoxOfficeReducer)
     const getListReducer = useSelector((state) => state.GetListReducer)
     const dispatch = useDispatch()
@@ -23,42 +23,17 @@ const ReviewList = () => {
     }
     const myDay = toDay() /* 20211104 */
 
-
     useEffect(() => {
         dispatch(fetchBoxOffice(myDay))
     },[])
 
-    /* console.log(boxOfficeReducer) */ //dispatch해서 오게된 값
-
     const officeList = boxOfficeReducer.success ? boxOfficeReducer.boxOfficeList.boxOfficeResult.dailyBoxOfficeList : []
-
-    /* let boxList = [1];
-    const getList = async (movies) => {
-        const box = await processCtrl.get(movies)
-        
-        boxList.push(box)
-        
-    }
-    
-    useEffect(() => {
-        setStarNum(boxList)
-    },[])
-    
-    
-    console.log(boxList) 
-    console.log(starNum)  */
     
     useEffect(() => {
         dispatch(getStars(officeList))
-    },[boxOfficeReducer])
+    },[boxOfficeReducer.success])
 
-    if(getListReducer.success){
-        getListReducer.starList.then(res => {
-            setStarNum(res)
-        })
-    }
-    
-    console.log(starNum)
+   /*  console.log(getListReducer.starList) */
     
 
     return (
@@ -67,12 +42,12 @@ const ReviewList = () => {
             {boxOfficeReducer.success && 
                 <ul>
                     {officeList.map((movies, i) => {
-                        /* getList(movies) */
-                    
-                        
+                        const test = getListReducer.starList[i]
+                
+                        console.log(test)
                         return (   
-                            <li key={movies.rnum}>
-                                <p>{starNum[i]}</p>
+                            <li key={i}>
+                                {/* <p>{getListReducer.starList[i]}</p> */}
                                 <div className="movieName">
                                     {
                                         movies.rankOldAndNew === "NEW"
@@ -82,13 +57,12 @@ const ReviewList = () => {
                                     <h2>{movies.movieNm}</h2>
                                 </div>
                                 <div className="stack">
-                                <p className="starAvg">평균 별점 : </p>
-                                <Stack spacing={2}>
-                                    <Rating name="size-small" defaultValue={
-                                        1
-                                        } size="small" />
-                                </Stack>
-                                <button className="rateBtn">리뷰</button>
+                                <p className="starAvg">평균 별점 : {test} 점</p>
+                                
+                                {/* <Stack spacing={2}>
+                                    <Rating name="size-small" defaultValue={1} size="small" />
+                                </Stack> */}
+                                <button className="rateBtn">POST</button>
                                 </div>
                             </li>
                         )

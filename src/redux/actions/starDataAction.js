@@ -10,6 +10,7 @@ export const getStars = (movies) => async (dispatch) => {
 
         const data = instance.data
 
+        
         const getNum = async () => {
             const starList = await data
             const movie = movies
@@ -28,12 +29,13 @@ export const getStars = (movies) => async (dispatch) => {
             return numbers
             
         }
+        const list = await getNum();
         
-
+        /* console.log(list) */
 
         dispatch({
             type: STARDATA_GET_SUCCESS,
-            payload: getNum()
+            payload: list
         })
     } catch(err) {
         dispatch({
