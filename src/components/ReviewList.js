@@ -3,12 +3,14 @@ import Rating from '@mui/material/Rating';
 import Stack from '@mui/material/Stack';
 import { useDispatch, useSelector, useStore } from 'react-redux';
 import { fetchBoxOffice } from "../redux/actions/boxOfficeAction";
+import { getStars } from "../redux/actions/starDataAction";
 import { processCtrl } from "../moduls/processCtrl";
 
 
 const ReviewList = () => {
     const [starNum, setStarNum] = useState([])
     const boxOfficeReducer = useSelector((state) => state.BoxOfficeReducer)
+    const getListReducer = useSelector((state) => state.GetListReducer)
     const dispatch = useDispatch()
 
     
@@ -30,35 +32,35 @@ const ReviewList = () => {
 
     const officeList = boxOfficeReducer.success ? boxOfficeReducer.boxOfficeList.boxOfficeResult.dailyBoxOfficeList : []
 
-    
-    /* const test = async (movie) => {
-        const test2 = await processCtrl.get(movie)
+    /* let boxList = [1];
+    const getList = async (movies) => {
+        const box = await processCtrl.get(movies)
         
+        boxList.push(box)
         
-        return test2 
     }
-
-    const pleaseFnc = () => {
+    
+    useEffect(() => {
+        setStarNum(boxList)
+    },[])
+    
+    
+    console.log(boxList) 
+    console.log(starNum)  */
+    
+    useEffect(() => {
+        dispatch(getStars(officeList))
         
-        officeList.forEach((data) => {
-            const getList = async () => {
-                const box = await processCtrl.get(data)
-                setStarNum(starNum => [...starNum, box])
-                
-            }
-            getList()
+    },[boxOfficeReducer])
+    if(getListReducer.success){
+        getListReducer.starList.then(res => {
+            setStarNum(res)
         })
         
     }
-    useEffect(() => {
-        pleaseFnc()
-    },[])
-    console.log(starNum) */
-
-    /* 
-    진짜 마지막 방법
-    나중에 해보자...
-    */
+    
+    console.log(starNum)
+    
 
     return (
         <>
@@ -66,15 +68,11 @@ const ReviewList = () => {
             {boxOfficeReducer.success && 
                 <ul>
                     {officeList.map((movies, i) => {
-                        const getList = async () => {
-                            const box = await processCtrl.get(movies)
-                            console.log(box)
-                            
-                        }
-                        getList()
+                        /* getList(movies) */
                     
                         return (   
                             <li key={movies.rnum}>
+                                <p>{starNum[i]}</p>
                                 <div className="movieName">
                                     {
                                         movies.rankOldAndNew === "NEW"

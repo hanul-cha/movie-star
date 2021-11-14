@@ -1,22 +1,22 @@
-import { BOXOFFICE_SUCCESS, BOXOFFICE_FAIL } from "../actions/boxOfficeActionType"
+import { STARDATA_GET_SUCCESS, STARDATA_FAIL } from "../actions/starDataActionType"
 
 const initialState = {
     success: false
 }
 
-const BoxOfficeReducer = (state = initialState, action) => {
+const GetListReducer = (state = initialState, action) => {
     switch (action.type) {
-        case BOXOFFICE_FAIL:
+        case STARDATA_FAIL:
             return {
                 ...state,
                 success: false
             }
-        case BOXOFFICE_SUCCESS: {
+        case STARDATA_GET_SUCCESS: {
 
             return {
                 ...state,
                 success: true,
-                boxOfficeList: action.payload
+                starList: action.payload
             }
         }
         default:
@@ -24,4 +24,4 @@ const BoxOfficeReducer = (state = initialState, action) => {
     }
 }
 
-export default BoxOfficeReducer
+export default GetListReducer

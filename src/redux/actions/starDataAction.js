@@ -2,21 +2,36 @@ import axios from "axios";
 import "../../env";
 import { STARDATA_ADD_SUCCESS, STARDATA_GET_SUCCESS, STARDATA_FAIL } from "./starDataActionType";
 
-const SERVER_PORT = process.env.SERVER_PORT;
+const SERVER_PORT = process.env.REACT_APP_SERVER_PORT;
 
-export const getStars = () => async (dispatch) => {
+export const getStars = (movies) => async (dispatch) => {
     try {
-        const instance = axios.create({
-            baseURL: `http://localhost:${SERVER_PORT}/`
-        });
+        const instance = await axios.get(`http://localhost:${SERVER_PORT}/api/stars`);
 
-        const res = await instance.get('api/stars');
+        const data = instance.data
 
-        const data = res.data
+        const getNum = async () => {
+            const starList = await data
+            const movie = movies
+            const numbers = []; 
+            movie.map(data => {
+                for(let i=0; i<starList.length; i++){
+                    if(data.movieCd === starList[i].movieCd){
+                        numbers.push(starList[i].scoreAVG/starList[i].number)
+                    break
+                    } else {
+                        numbers.push(0)
+                    }
+                }
+            })
+            return numbers
+        }
+        
+
 
         dispatch({
             type: STARDATA_GET_SUCCESS,
-            payload: data
+            payload: getNum()
         })
     } catch(err) {
         dispatch({
