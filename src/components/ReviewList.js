@@ -31,13 +31,34 @@ const ReviewList = () => {
     const officeList = boxOfficeReducer.success ? boxOfficeReducer.boxOfficeList.boxOfficeResult.dailyBoxOfficeList : []
 
     
-    const test = async (movie) => {
+    /* const test = async (movie) => {
         const test2 = await processCtrl.get(movie)
-        /* console.log(test2) */
+        
+        
         return test2 
     }
 
+    const pleaseFnc = () => {
+        
+        officeList.forEach((data) => {
+            const getList = async () => {
+                const box = await processCtrl.get(data)
+                setStarNum(starNum => [...starNum, box])
+                
+            }
+            getList()
+        })
+        
+    }
+    useEffect(() => {
+        pleaseFnc()
+    },[])
+    console.log(starNum) */
 
+    /* 
+    진짜 마지막 방법
+    나중에 해보자...
+    */
 
     return (
         <>
@@ -45,15 +66,12 @@ const ReviewList = () => {
             {boxOfficeReducer.success && 
                 <ul>
                     {officeList.map((movies, i) => {
-                        
-                        const test3 = test(movies)
-                        console.log(test3)
-                        
-                        
-                        
-                        
-                        
-                         
+                        const getList = async () => {
+                            const box = await processCtrl.get(movies)
+                            console.log(box)
+                            
+                        }
+                        getList()
                     
                         return (   
                             <li key={movies.rnum}>
@@ -69,7 +87,7 @@ const ReviewList = () => {
                                 <p className="starAvg">평균 별점 : </p>
                                 <Stack spacing={2}>
                                     <Rating name="size-small" defaultValue={
-                                        1
+                                        starNum[i]
                                         } size="small" />
                                 </Stack>
                                 <button className="rateBtn">리뷰</button>
